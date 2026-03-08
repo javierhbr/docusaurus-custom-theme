@@ -1,0 +1,77 @@
+---
+title: useCallback
+description: Cache a function definition between re-renders when identity matters.
+---
+
+# useCallback
+
+useCallback is a React Hook that lets you cache a function definition between re-renders.
+
+<div className="theme-inline-snippet" role="presentation">
+  <code>
+    <span className="theme-inline-snippet__keyword">const</span>{' '}
+    <span>cachedFn = </span>
+    <span className="theme-inline-snippet__call">useCallback</span>
+    <span>(fn, dependencies)</span>
+  </code>
+</div>
+
+## Overview
+
+Reach for `useCallback` when function identity matters to a child component, a dependency list, or a subscription boundary. It does not make the function faster. It makes the reference more stable.
+
+## Reference
+
+### Signature
+
+`useCallback(fn, dependencies)`
+
+The function value that you want to cache. It can take any arguments and return any values. React returns the same function reference until one of the dependencies changes.
+
+```tsx title="ProductPage.tsx" {4-7}
+import {useCallback} from 'react';
+
+export default function ProductPage({productId, referrer}: ProductPageProps) {
+  const handleSubmit = useCallback((orderDetails: OrderDetails) => {
+    post(`/product/${productId}/buy`, {
+      referrer,
+      orderDetails,
+    });
+  }, [productId, referrer]);
+
+  return <CheckoutForm onSubmit={handleSubmit} />;
+}
+```
+
+## Troubleshooting
+
+### Skipping re-rendering of components
+
+`useCallback` is most useful when you pass a callback into a memoized child and you want React to preserve the same function reference across renders.
+
+### Updating state from a memoized callback
+
+When a callback only derives the next state from the current state, prefer the updater form to keep the dependency list smaller.
+
+```tsx
+const handleAddTodo = useCallback((text: string) => {
+  setTodos((currentTodos) => [
+    ...currentTodos,
+    {id: crypto.randomUUID(), text},
+  ]);
+}, []);
+```
+
+### Preventing an Effect from firing too often
+
+If an Effect depends on a function that gets recreated every render, move that function behind `useCallback` so the dependency is stable.
+
+## Optimizing
+
+### Every time a component renders
+
+Each render creates a new function value by default. `useCallback` tells React to reuse the prior function until one of the listed dependencies changes.
+
+### Calling useCallback()
+
+Use it selectively around component boundaries that are proven to be sensitive to referential changes. When there is no identity-sensitive consumer, leave the function inline and keep the component simpler.

@@ -1,0 +1,20 @@
+---
+title: useActionState
+description: Coordinate async form actions with pending and result state.
+---
+
+# useActionState
+
+`useActionState` helps you keep form submissions, server actions, and pending UI state in sync with less plumbing.
+
+## Reference
+
+```tsx
+const [state, formAction, isPending] = useActionState(action, initialState);
+```
+
+## When to use it
+
+- You want form state and server results in one hook.
+- You need a built-in pending flag for submit affordances.
+- You want a structured result object instead of scattered booleans.

@@ -1,0 +1,18 @@
+---
+title: useDeferredValue
+description: Keep urgent UI responsive while lower-priority work settles.
+---
+
+# useDeferredValue
+
+`useDeferredValue` lets you defer a derived value so the UI can keep responding to urgent interactions.
+
+## Reference
+
+```tsx
+const deferredQuery = useDeferredValue(query);
+```
+
+## Guidance
+
+Use it for heavy filtered lists, search results, and large previews where input responsiveness matters more than immediate secondary rendering.

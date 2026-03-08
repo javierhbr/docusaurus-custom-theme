@@ -1,0 +1,22 @@
+---
+title: useEffect
+description: Synchronize a component with external systems.
+---
+
+# useEffect
+
+`useEffect` connects rendering to subscriptions, timers, network work, or any other external system.
+
+## Reference
+
+```tsx
+useEffect(() => {
+  const connection = createConnection(roomId);
+  connection.connect();
+  return () => connection.disconnect();
+}, [roomId]);
+```
+
+## Guidance
+
+Prefer deriving values during render whenever possible. Effects are for synchronization, not for routine data flow inside the component tree.

@@ -1,0 +1,14 @@
+---
+title: Callback Patterns
+description: Design stable callback APIs without over-memoizing.
+---
+
+# Callback Patterns
+
+Callback APIs should stay readable first and optimized second.
+
+## Recommended defaults
+
+- Keep callbacks close to the component that owns the data.
+- Memoize only when identity stability matters downstream.
+- Prefer event-specific callbacks over generic action objects when the UI is simple.

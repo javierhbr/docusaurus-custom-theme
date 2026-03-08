@@ -1,0 +1,20 @@
+---
+title: useImperativeHandle
+description: Shape the ref API exposed by a component.
+---
+
+# useImperativeHandle
+
+`useImperativeHandle` lets you decide which methods and fields a parent receives through a forwarded ref.
+
+## Reference
+
+```tsx
+useImperativeHandle(ref, () => ({
+  focus: () => inputRef.current?.focus(),
+}));
+```
+
+## Guidance
+
+Expose the narrowest possible ref surface. Imperative escape hatches are useful, but they should stay exceptional.

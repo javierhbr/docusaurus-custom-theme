@@ -1,0 +1,21 @@
+---
+title: useOptimistic
+description: Show the expected result before the server confirms it.
+---
+
+# useOptimistic
+
+`useOptimistic` helps you render an anticipated UI state immediately while async work is still in flight.
+
+## Reference
+
+```tsx
+const [optimisticMessages, addOptimisticMessage] = useOptimistic(
+  messages,
+  (currentMessages, newMessage) => [...currentMessages, newMessage],
+);
+```
+
+## Guidance
+
+Use optimistic UI for workflows where reversions are understandable and infrequent, such as liking, voting, and lightweight messaging.

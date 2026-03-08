@@ -1,0 +1,18 @@
+---
+title: useDebugValue
+description: Label custom Hooks in React DevTools.
+---
+
+# useDebugValue
+
+`useDebugValue` exposes readable labels for custom Hooks inside React DevTools.
+
+## Reference
+
+```tsx
+useDebugValue(statusLabel);
+```
+
+## Guidance
+
+Only add debug labels to custom Hooks that are reused or hard to inspect. Keep labels short and derived lazily when computation is expensive.

@@ -1,0 +1,18 @@
+---
+title: useId
+description: Generate deterministic IDs for accessibility wiring.
+---
+
+# useId
+
+`useId` creates stable identifiers that work across server and client rendering.
+
+## Reference
+
+```tsx
+const inputId = useId();
+```
+
+## Guidance
+
+Use it for `label` and form-control relationships, not for list keys or persisted identifiers.

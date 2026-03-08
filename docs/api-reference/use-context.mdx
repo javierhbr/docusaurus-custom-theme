@@ -1,0 +1,18 @@
+---
+title: useContext
+description: Read values from the nearest matching provider.
+---
+
+# useContext
+
+`useContext` subscribes a component to the closest provider for the given context object.
+
+## Reference
+
+```tsx
+const value = useContext(SomeContext);
+```
+
+## Guidance
+
+Keep provider values stable and narrowly scoped so consumers only re-render when the data they actually need changes.
