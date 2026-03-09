@@ -1,0 +1,99 @@
+---
+title: Unified SDD Methodology
+description: A five-phase operating model for moving from shared context to delivery without losing traceability.
+displayed_sidebar: referenceSidebar
+slug: /unified-sdd-methodology
+---
+
+# Unified SDD Methodology
+
+Unified Spec-Driven Development is a five-phase operating model for teams that need to move from intake to delivery without losing platform context, specification quality, or traceability. It combines platform guardrails, change routing, specification discipline, technical planning, and delivery into one repeatable workflow.
+
+## What it standardizes
+
+- one canonical flow from intake to archive
+- one source-of-truth model across platform repos, component repos, and JIRA
+- one handoff model between product, architecture, delivery, and validation
+- one rule for agents: assist with drafts and checks, but leave tradeoffs and approvals to humans
+
+## The five phases
+
+| Phase | Primary owner | Main output |
+| --- | --- | --- |
+| Platform | Architect | Durable rules, shared context, versioning model |
+| Route | Team Lead | Normalized change package, size, impact, next path |
+| Specify | Product | Clear behavior, constraints, clarifications |
+| Plan | Architect | Technical design, tasks, delivery slices |
+| Deliver | Team Lead | Build, PR review, verification, deploy, archive |
+
+```text
+[Platform] -> [Route] -> [Specify] -> [Plan] -> [Deliver]
+```
+
+## Core operating rules
+
+- Do not plan before `Specify` is ready.
+- Do not implement from an ambiguous or weak spec.
+- Keep shared truth in the platform repository and local implementation truth in the component repository.
+- Use JIRA for workflow coordination, not as the detailed spec store.
+- Treat the local platform MCP as read-only, and validate against the pinned platform version by default.
+
+## Adoption path
+
+Adopt the methodology in two iterations so teams learn the front half before they change delivery behavior.
+
+- `Iteration 1` establishes `Platform`, `Route`, and `Specify`.
+- `Iteration 2` adds `Plan` and `Deliver`.
+
+Use the [Iteration 1 Playbook](./iteration-1-playbook.md) to set the baseline, then move to the [Iteration 2 Playbook](./iteration-2-playbook.md) once teams are consistently producing strong specs.
+
+## Source-of-truth model
+
+Unified SDD works because each layer has one explicit job:
+
+- The platform repository owns shared rules, contracts, ADRs, and versioned references.
+- Each component repository owns local OpenSpec artifacts and implementation truth.
+- JIRA owns workflow state, issue relationships, and delivery coordination.
+- A local platform MCP can expose platform truth read-only without replacing the platform repository.
+
+Read the deeper models in [Canonical Platform Truth + Versioned Component Alignment](./canonical-platform-truth-and-component-alignment.md) and [Local Platform MCP Model](./local-platform-mcp-model.md).
+
+## How teams and agents interact
+
+Humans own intent, tradeoffs, and sign-off. Agents help teams draft, normalize, clarify, and verify the work inside each phase.
+
+- Product defines required behavior and removes ambiguity.
+- Architecture sets durable guardrails and approves the technical plan.
+- Team leads route work and own delivery readiness.
+- Developers execute approved slices and feed back hidden complexity early.
+- Validation confirms the change before release and archive.
+
+## Artifact chain
+
+The workflow is phase-first, but it still expects a durable artifact chain:
+
+- platform baseline and version markers
+- `platform-ref.yaml` and `jira-traceability.yaml`
+- proposal and delta specs when behavior changes
+- `design.md` and `tasks.md` before delivery
+- pull request, verification, deploy, and archive evidence at the end
+
+## Decisions baked into v1
+
+The current version of the methodology assumes:
+
+- federated intake, normalized into one canonical workflow
+- the change package is the canonical execution unit
+- routing separates size from impact
+- component repositories use OpenSpec only after the platform handoff
+- deliver explicitly includes PR creation, review, verification, deploy, and archive
+- local MCP access is a practical read-only bridge, not a replacement for shared truth
+
+Browse the [ADRs](./decisions/ADR-001-federated-intake-single-canonical-workflow.md) for the design rationale behind those choices.
+
+## Start here
+
+- Read [Iteration 1 Playbook](./iteration-1-playbook.md) if you are introducing the model to a team.
+- Read [Iteration 2 Playbook](./iteration-2-playbook.md) if your team already produces reliable specs and needs an execution model.
+- Open the [Example Package](./example/README.md) for a concrete end-to-end walkthrough.
+- Use the [Templates](./templates/README.md) when you want a reusable starting point instead of filled examples.
