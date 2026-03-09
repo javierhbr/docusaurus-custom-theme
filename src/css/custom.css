@@ -28,6 +28,19 @@
   --theme-color-warning: #f59e0b;
   --theme-color-danger: #cc5a7e;
   --theme-color-shadow: 21 28 45;
+  --search-local-modal-background: var(--theme-color-surface);
+  --search-local-modal-shadow: 0 32px 80px rgba(var(--theme-color-shadow), 0.18);
+  --search-local-modal-width: 680px;
+  --search-local-modal-width-sm: 92vw;
+  --search-local-spacing: 14px;
+  --search-local-hit-background: var(--theme-color-surface-2);
+  --search-local-hit-shadow: 0 14px 32px rgba(var(--theme-color-shadow), 0.05);
+  --search-local-hit-color: var(--theme-color-text-strong);
+  --search-local-hit-height: 72px;
+  --search-local-highlight-color: var(--theme-color-brand-600);
+  --search-local-muted-color: var(--theme-color-text);
+  --search-local-input-active-border-color: rgba(79, 70, 229, 0.24);
+  --search-local-icon-stroke-width: 1.55;
   --theme-radius-xs: 10px;
   --theme-radius-sm: 14px;
   --theme-radius-md: 20px;
@@ -82,6 +95,12 @@
   --theme-color-text-muted: #95a0b9;
   --theme-color-text-faint: #74809a;
   --theme-color-danger: #f28bb1;
+  --search-local-modal-background: var(--theme-color-surface);
+  --search-local-hit-background: var(--theme-color-surface-2);
+  --search-local-hit-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+  --search-local-hit-color: var(--theme-color-text-strong);
+  --search-local-muted-color: var(--theme-color-text);
+  --search-local-input-active-border-color: rgba(127, 140, 255, 0.28);
   --ifm-font-color-base: var(--theme-color-text);
   --ifm-heading-color: var(--theme-color-text-strong);
   --ifm-background-color: var(--theme-color-bg);
@@ -486,13 +505,18 @@ a {
 }
 
 .theme-doc-sidebar-container .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible {
-  padding: 8px 2px;
+  padding: 10px 2px;
   border-bottom: 1px solid var(--theme-color-border);
   border-radius: 0;
   background: transparent;
   color: var(--theme-color-text-strong);
   font-size: 0.94rem;
   font-weight: 800;
+}
+
+.theme-doc-sidebar-container .theme-doc-sidebar-item-link-level-1 > .theme-sidebar-link {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .theme-doc-sidebar-container .theme-doc-sidebar-item-category-level-1 > .menu__list {
