@@ -227,6 +227,38 @@ pre { border-radius: 8px; box-shadow: none; font-size: 0.84rem; line-height: 1.8
 .theme-doc-markdown table tr { background: transparent; border: 0; }
 .theme-doc-markdown table tr:last-child td { border-bottom: 0; }
 
+/* Diagram viewer and plugin-powered image zoom. */
+.theme-diagram { margin: 24px 0; border: 1px solid var(--theme-color-border); border-radius: 12px; background: var(--theme-color-surface); overflow: hidden; }
+.theme-diagram__toolbar { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; background: var(--theme-color-bg-soft); border-bottom: 1px solid var(--theme-color-border); color: var(--theme-color-text-muted); font-size: 0.8rem; font-weight: 500; }
+.theme-diagram__toolbar button, .theme-media-viewer button { border: 1px solid var(--theme-color-border-strong); border-radius: 6px; padding: 6px 12px; color: var(--theme-color-text-strong); background: var(--theme-color-surface); font: inherit; cursor: pointer; }
+.theme-diagram__toolbar button:hover, .theme-media-viewer button:hover:not(:disabled) { background: var(--theme-color-brand-50); color: var(--theme-color-brand-600); border-color: var(--theme-color-brand-300); }
+.theme-diagram__canvas { padding: 28px 20px; overflow-x: auto; min-height: 100px; }
+.theme-diagram .docusaurus-mermaid-container { display: flex; justify-content: center; }
+:is(.theme-diagram, .theme-media-viewer) .node :is(rect, circle, polygon, path) { fill: var(--theme-color-brand-50) !important; stroke: var(--theme-color-brand-400) !important; }
+:is(.theme-diagram, .theme-media-viewer) .nodeLabel { fill: var(--theme-color-text-strong) !important; color: var(--theme-color-text-strong) !important; }
+.medium-zoom-overlay { z-index: 2000; }
+.medium-zoom-image--opened { z-index: 2001; }
+.markdown img[role='button']:focus-visible { outline: 2px solid var(--theme-color-brand-600); outline-offset: 4px; border-radius: 4px; }
+.theme-media-viewer { width: min(1400px, 94vw); height: 90dvh; max-width: 94vw; max-height: 90dvh; padding: 0; border: 1px solid var(--theme-color-border-strong); border-radius: 16px; background: var(--theme-color-surface); color: var(--theme-color-text); box-shadow: 0 24px 100px rgba(0, 0, 0, 0.25); }
+.theme-media-viewer::backdrop { background: rgba(15, 13, 24, 0.7); backdrop-filter: blur(4px); }
+.theme-media-viewer__shell { display: flex; flex-direction: column; height: 100%; }
+.theme-media-viewer__toolbar { display: flex; flex: none; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; border-bottom: 1px solid var(--theme-color-border); }
+.theme-media-viewer__title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.theme-media-viewer__controls { display: flex; flex: none; align-items: center; gap: 8px; font-size: 0.8rem; }
+.theme-media-viewer__controls button { min-height: 40px; min-width: 40px; }
+.theme-media-viewer__controls button:disabled { opacity: 0.4; cursor: default; }
+.theme-media-viewer__controls output { min-width: 42px; text-align: center; font-variant-numeric: tabular-nums; }
+.theme-media-viewer__viewport { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; }
+.theme-media-viewer__content { display: flex; align-items: center; justify-content: center; padding: 24px; }
+.theme-media-viewer__content .docusaurus-mermaid-container { width: 100%; height: 100%; }
+.theme-media-viewer__content svg { width: 100% !important; height: 100% !important; max-width: none !important; }
+@media (max-width: 576px) {
+  .theme-media-viewer__toolbar { flex-wrap: wrap; gap: 8px; padding: 12px; }
+  .theme-media-viewer__controls { width: 100%; justify-content: space-between; gap: 4px; }
+  .theme-media-viewer__controls button { min-height: 44px; }
+  .theme-media-viewer__content { padding: 12px; }
+}
+
 /* The page outline is a secondary reading aid, never a competing panel. */
 .theme-doc-aside { position: sticky; top: calc(var(--ifm-navbar-height) + 32px); padding-left: 20px; border-left: 1px solid var(--theme-color-border); max-height: calc(100vh - var(--ifm-navbar-height) - 64px); overflow-y: auto; }
 .theme-doc-aside__title { margin: 0 0 14px; font-size: 0.75rem; font-weight: 600; color: var(--theme-color-text-strong); }

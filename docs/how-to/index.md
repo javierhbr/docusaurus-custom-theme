@@ -10,6 +10,7 @@ Practical guides for getting things done with this documentation site. Choose a 
 
 ## Write and organize
 
+- [Diagrams and image zoom](./diagrams-and-images.md) — render Mermaid diagrams and explore images in a larger view.
 - [Customize the UI theme](./customize-theme.md) — change colors, fonts, layout, and navigation spacing.
 - [Create a page](../tutorial-basics/create-a-page.md) — add a standalone Markdown or React page.
 - [Create a document](../tutorial-basics/create-a-document.md) — publish a guide in the documentation sidebar.

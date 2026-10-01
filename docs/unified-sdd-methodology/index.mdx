@@ -26,8 +26,11 @@ Unified Spec-Driven Development is a five-phase operating model for teams that n
 | Plan | Architect | Technical design, tasks, delivery slices |
 | Deliver | Team Lead | Build, PR review, verification, deploy, archive |
 
-```text
-[Platform] -> [Route] -> [Specify] -> [Plan] -> [Deliver]
+```mermaid
+flowchart LR
+  accTitle: The five phases of Unified SDD
+  accDescr: Platform establishes shared context, followed by Route, Specify, Plan, and Deliver.
+  Platform --> Route --> Specify --> Plan --> Deliver
 ```
 
 ## Core operating rules

@@ -20,6 +20,7 @@ const config: Config = {
   url: 'https://example.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
+  markdown: {mermaid: true},
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -62,6 +63,7 @@ const config: Config = {
     ],
   ],
   plugins: [
+    'docusaurus-plugin-image-zoom',
     [
       'docusaurus-plugin-copy-page-button',
       {
@@ -71,6 +73,7 @@ const config: Config = {
     ],
   ],
   themes: [
+    '@docusaurus/theme-mermaid',
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
@@ -100,6 +103,19 @@ const config: Config = {
     ],
   ],
   themeConfig: {
+    zoom: {
+      selector: '.markdown img:not(.no-zoom):not([alt=""]):not(a img):not(button img)',
+      background: {light: 'rgba(255, 255, 255, 0.96)', dark: 'rgba(24, 23, 29, 0.96)'},
+      config: {margin: 24, scrollOffset: 40},
+    },
+    mermaid: {
+      theme: {light: 'neutral', dark: 'dark'},
+      options: {
+        securityLevel: 'strict',
+        fontFamily: 'IBM Plex Sans, sans-serif',
+        flowchart: {curve: 'basis', htmlLabels: false},
+      },
+    },
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
       defaultMode: 'light',
