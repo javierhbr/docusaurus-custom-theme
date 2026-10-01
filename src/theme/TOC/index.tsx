@@ -8,9 +8,9 @@ const LINK_ACTIVE_CLASS_NAME = 'table-of-contents__link--active';
 
 export default function TOC({className, ...props}: Props): ReactNode {
   return (
-    <aside className={clsx('theme-doc-aside', className)}>
+    <aside aria-label="On this page" className={clsx('theme-doc-aside', className)}>
       <div className="theme-doc-aside__card">
-        <div className="theme-doc-aside__title">On This Page</div>
+        <div className="theme-doc-aside__title">On this page</div>
         <div className="theme-doc-aside__toc">
           <TOCItems
             {...props}

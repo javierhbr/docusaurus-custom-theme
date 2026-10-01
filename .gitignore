@@ -6,6 +6,7 @@
 
 # Generated files
 .docusaurus
+/docs/how-to/generated/
 .cache-loader
 *.tsbuildinfo
 

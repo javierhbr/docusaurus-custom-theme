@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Documentation publishing checklist</title>
+    <meta name="description" content="Check links, search results, and Markdown exports before publishing documentation.">
+    <style>
+      body { margin: 0; background: #faf9fc; color: #252331; font: 17px/1.75 system-ui, sans-serif; }
+      main { max-width: 760px; margin: auto; padding: 48px 24px; }
+      h1 { font-size: 2.2rem; line-height: 1.2; letter-spacing: -0.03em; }
+      h2 { margin-top: 36px; font-size: 1.3rem; }
+      li + li { margin-top: 10px; }
+      code { background: #eee9fa; padding: 2px 5px; border-radius: 4px; }
+      @media (prefers-color-scheme: dark) { body { background: #18171d; color: #f1eef6; } code { background: #342b4e; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Documentation publishing checklist</h1>
+      <p>Use this checklist before publishing a documentation update.</p>
+      <h2>Build the site</h2>
+      <ul>
+        <li>Run <code>npm run typecheck</code> to check TypeScript.</li>
+        <li>Run <code>npm run build</code> and resolve broken links reported by Docusaurus.</li>
+      </ul>
+      <h2>Check the reading experience</h2>
+      <ul>
+        <li>Open the changed pages on desktop and mobile.</li>
+        <li>Verify navigation, headings, code blocks, and light and dark themes.</li>
+        <li>Check the original HTML document and its searchable reading page.</li>
+      </ul>
+      <h2>Verify discovery and export</h2>
+      <ul>
+        <li>Search for a phrase from the updated content in the production preview.</li>
+        <li>Use Copy page to verify the Markdown export contains the current page.</li>
+        <li>Confirm the HTML Library links to the published documents.</li>
+      </ul>
+    </main>
+  </body>
+</html>

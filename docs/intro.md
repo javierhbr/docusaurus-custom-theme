@@ -1,4 +1,6 @@
 ---
+sidebar_position: 0
+sidebar_class_name: sidebar-shell-overview
 title: Overview
 slug: /
 description: A design-led Docusaurus reference shell with tokenized theming.

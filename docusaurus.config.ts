@@ -1,10 +1,14 @@
 import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const require = createRequire(import.meta.url);
 const {version: packageVersion} = require('./package.json') as {version: string};
+// Generate searchable docs before the docs and local-search plugins load.
+const {syncStaticHtml} = require('./scripts/sync-static-html.cjs');
+syncStaticHtml(fileURLToPath(new URL('.', import.meta.url)));
 
 const config: Config = {
   title: 'slothui',
@@ -31,6 +35,15 @@ const config: Config = {
         docs: {
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
+          async sidebarItemsGenerator({defaultSidebarItemsGenerator, ...args}) {
+            // Keep How To's directories out of the root Reference tree.
+            const howToRoots = ['how-to', 'tutorial-basics', 'tutorial-extras'];
+            const docs = args.item.dirName === '.'
+              ? args.docs.filter((doc) => !howToRoots.some((root) =>
+                  doc.sourceDirName === root || doc.sourceDirName.startsWith(`${root}/`)))
+              : args.docs;
+            return defaultSidebarItemsGenerator({...args, docs});
+          },
         },
         blog: {
           showReadingTime: true,
@@ -46,6 +59,15 @@ const config: Config = {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
+    ],
+  ],
+  plugins: [
+    [
+      'docusaurus-plugin-copy-page-button',
+      {
+        injectButton: false,
+        generateMarkdownRoutes: true,
+      },
     ],
   ],
   themes: [
@@ -64,12 +86,15 @@ const config: Config = {
         searchResultLimits: 8,
         searchBarShortcut: true,
         searchBarShortcutHint: true,
+        searchBarPosition: 'left',
         ignoreCssSelectors: [
           'aside',
           '.theme-doc-sidebar-container',
           '.theme-doc-aside',
           '.navbar',
           '.footer',
+          '#copy-page-button-container',
+          '[data-copy-page-button-container]',
         ],
       },
     ],
@@ -95,6 +120,12 @@ const config: Config = {
           activeBaseRegex: '^/$|^/intro/?$',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'howToSidebar',
+          label: 'How To',
+          position: 'right',
+        },
+        {
           to: '/api-reference/use-callback',
           label: 'Reference',
           position: 'right',
@@ -106,13 +137,14 @@ const config: Config = {
     },
     docs: {
       sidebar: {
-        autoCollapseCategories: false,
+        autoCollapseCategories: true,
         hideable: false,
       },
     },
     footer: {
       links: [
         {label: 'Docs', to: '/'},
+        {label: 'How To', to: '/how-to'},
         {label: 'Reference', to: '/api-reference/use-callback'},
         {label: 'Community', to: '/community'},
         {label: 'Blog', to: '/blog'},
